@@ -9,13 +9,28 @@ netdiscover
 ```
 arpscan <ip_addr>.0/24
 ```
-  * nmap - Intessive
+  * nmap
 ```
+# Basic
+sudo nmap -sSV -p- <ip_addr> -oA <outfile> -T4
+# Soft
+nmap -sV -sC -oA <out_file> <ip_addr>
+# Intensive
 nmap -A -T4 -o <output_file> <ip_addr>
 ```
 * Showdan
-  * ...
+  * Go to shodan.io and use like a search engine
 * Subdomain Enumeration
+  * Subbrute
+```
+git clone https://github.com/TheRook/subbrute
+python subbrute.py <domain_name>
+```
+* Sublist3r
+```
+# Enum subdomains and show in real time
+python sublist3r.py -v -d <domain_name>
+```
 ## Enumeration/Active Scanning
 * Scripts
   * enum4linux - Script to enumerate and check for exploits for a linux machine
@@ -31,9 +46,28 @@ smbmap -H <ip_addr>
 * Directory Traversal
   * dirb
   * wfuzz
+  * gobuster
+```
+./gobuster -u <url> -w <wordlist> -t 10
+# With Subdomain list
+./gobuster -m dns -w <subdomain_file> -u <url> -i
+```
   * nmap - nmap scripts located at /usr/share/nmap/scripts
 ```
 nmap --script http-enum.nse <ip_addr>
+```
+* Masscan
+```
+masscan -iL <ip_addr_file> --rate 10000 -p1-65535 --only-open -oL <output_file>
+masscan -e <internet_interface> -p1-65535,U:1-65535 <ip_addr> --rate 1000
+```
+* Enum4all
+```
+./enum4linux <ip_addr>
+```
+* Nikto - enumerates ports and tries to find potential vulns
+```
+nikto -h <ip_addr>
 ```
 ## Vulnerablility Research
 * Password Cracking
@@ -57,7 +91,7 @@ searchsploit <software and version to search for>
   * Hydra
 ```
 hydra -l <user_name> -P /usr/share/wordlists/rockyou.txt <ip_addr> <protocol, ie ftp, ssh> -e nsr
-  
+```
 ## Exploitation
 * Reverse Shells
   * http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
@@ -103,6 +137,15 @@ wpscan --url <url to page> -U <user_name> -P /usr/share/wordlists/rockyou.txt
   * Useful site for living off the land https://lolbas-project.github.io/
 * Linux
   * Useful site for living off the land https://gtfobins.github.io/
+  * LinEnum - Download from https://github.com/rebootuser/LinEnum
+```
+./LinEnum.sh -s -k keyword -r <report_name> -e /tmp/ -t
+```
+  * LinuxSmartEnumeration - uses many tools from LinEnum and tries to gradually increase the intensity
+```
+wget "https://github.com/diego-treitos/linux-smart-enumeration/raw/master/lse.sh" -O lse.sh;chmod 700 lse.sh
+./lse.sh
+```
 ## Reverse Engineering
 * If a stack canary exists, there's a check stack function at the end of the function before it returns
 * To see if ASLR enabled for linux. To turn off, echo 2 to this address and to enable, echo 0
