@@ -111,14 +111,11 @@ python -m SimpleHTTPServer
   * sqlmap
     * To test for injection
 ```
+# Checks for injection and databases
 sqlmap -o -u <url of page> --forms --dbs
-```
-    * To show the tables in the database
-```
+# To show the tables in the database
 sqlmap -o -u <url of page> --forms -D <database_name> --tables
-```
-    * Dump info from users table and try to crack password
-```
+# Dump info from users table and try to crack password
 sqlmap -o -u <url of page> --forms -D <database_name> -T <table_name> --dump
 ```
 * MySQL
