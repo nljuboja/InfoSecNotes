@@ -48,6 +48,11 @@ spyse -target <domain_name> --ssl-certificates
 # Getting all DNS records
 spyse -target <domain_name> --dns-all
 ```
+  * Asset Finder - https://github.com/tomnomnom/assetfinder
+```
+go get -u github.com/tomnomnom/assetfinder
+assetfinder [--subs-only] <domain>
+```
 ## Enumeration/Active Scanning
 * Scripts
   * enum4linux - Script to enumerate and check for exploits for a linux machine
