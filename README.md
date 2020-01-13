@@ -3,7 +3,7 @@
 * CTF Scanning
   * netdiscover - Shows IP addresses as ARP requests go over the interface
 ```
-netdiscover
+netdiscover -i eth0 -r <ip_addr>.0/24
 ```
   * arpscan - Sends out ARP scans and sees the responses
 ```
@@ -11,12 +11,18 @@ arpscan <ip_addr>.0/24
 ```
   * nmap
 ```
+# Ping sweep, no port scan, no dns resolution
+nmap -sn -n --disable-arp-ping <ip_addr>.1-254 | grep -v "host down"
 # Basic
 sudo nmap -sSV -p- <ip_addr> -oA <outfile> -T4
 # Soft
 nmap -sV -sC -oA <out_file> <ip_addr>
 # Intensive
 nmap -A -T4 -o <output_file> <ip_addr>
+# Use searchsploit to detect vulnerable services
+nmap -p- -sV -oX a.xml <ip_adr>; searchsploit --nmap a.xml
+# Generate a nice scan report
+nmap -sV <ip_addr> -oX scan.xml && xsltproc scan.xml -o "`date +%m%d%y`_report.html"
 ```
 * Showdan
   * Go to shodan.io and use like a search engine
@@ -26,10 +32,21 @@ nmap -A -T4 -o <output_file> <ip_addr>
 git clone https://github.com/TheRook/subbrute
 python subbrute.py <domain_name>
 ```
-* Sublist3r
+  * Sublist3r
 ```
 # Enum subdomains and show in real time
 python sublist3r.py -v -d <domain_name>
+```
+  * Spyse
+```
+# Search for subdomains
+spyse -target <domain_name> --subdomains
+# Reverse IP Lookup
+spyse -target <ip_addr> --domains-on-ip
+# Search for SSL certificates
+spyse -target <domain_name> --ssl-certificates
+# Getting all DNS records
+spyse -target <domain_name> --dns-all
 ```
 ## Enumeration/Active Scanning
 * Scripts
@@ -129,6 +146,8 @@ wpscan --url <ip_addr> -e at -e ap -e u
 ```
 wpscan --url <url to page> -U <user_name> -P /usr/share/wordlists/rockyou.txt
 ```
+* Metasploit
+  * Use this cheatsheet https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Metasploit%20-%20Cheatsheet.md
 ## Privilege Escalation
 * Windows
   * Useful site for living off the land https://lolbas-project.github.io/
