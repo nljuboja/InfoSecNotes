@@ -95,6 +95,29 @@ Unary ! | Operand must be arithmetic type or pointer | | int, value 0 or 1
 sizeof | | | size_t (unsigned integer type)
 Binary < > <= => == != | Operands must be arithmetic type | Operands undergo usual arithmetic conversions | int, value 0 or 1
 
+* Assembly Signed and Unsigned Comparisons
+  * jl is for signed comparison
+  * jb is for unsigned comparison
+  
+Instruction | Description | signed-ness | Flags
+--- | --- | --- | ---
+JO | Jump if overflow | | OF = 1 
+JNO | Jump if not overflow | | OF = 0
+JS | Jump if sign | | SF = 1
+JNS | Jump if not sign | | SF = 0
+JE,JZ | Jump if equal,Jump if zero | | ZF = 1
+JNE,JNZ | Jump if not equal, Jump if not zero | | ZF = 0
+JB,JNAE,JC | Jump if below, Jump if not above or equal, Jump if carry | unsigned | CF = 1
+JNB,JAE,JNC | Jump if not below, Jump if above or equal, Jump if not carry | unsigned | CF = 0
+JBE,JNA | Jump if below or equal, Jump if not above | unsigned | CF = 1 or ZF = 1
+JA,JNBE | Jump if above,Jump if not below or equal | unsigned | CF = 0 and ZF = 0
+JL,JNGE | Jump if less, Jump if not greater or equal | signed | SF <> OF
+JGE,JNL | Jump if greater or equal, Jump if not less | signed | SF = OF
+JLE,JNG | Jump if less or equal, Jump if not greater | signed | ZF = 1 or SF <> OF
+JG,JNLE | Jump if greater, Jump ifn ot less or equal | signed | ZF = 0 and SF = OF
+JP,JPE | Jump if parity, Jump if parity even | | PF = 1
+JNP,JPO | Jump if not parity, Jump if parity odd | | PF = 0
+JCXZ|JECXZ | Jump if %CX register 0, Jump if %ECX register is 0 | | %CX = 0, %ECX = 0
 
 ### Areas to Exploit
 * Function pointers
