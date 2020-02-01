@@ -80,7 +80,7 @@ nmap --script http-enum.nse <ip_addr>
 ```
 * Masscan
 ```
-masscan -iL <ip_addr_file> --rate 10000 -p1-65535 --only-open -oL <output_file>
+masscan -iL <ip_addr_file> --rate 10000 -p1-65535 --open-only -oL <output_file>
 masscan -e <internet_interface> -p1-65535,U:1-65535 <ip_addr> --rate 1000
 ```
 * Enum4all
