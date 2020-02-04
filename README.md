@@ -67,10 +67,18 @@ smbmap -H <ip_addr>
 ```
 * Directory Traversal
   * dirb
+```
+# -X is the extension list, -N ignore status codes
+dirb http://<url> /usr/share/dirb/common.txt -X .php,.html,.ini,.txt -o <output_file>
+```
   * wfuzz
+```
+# -c is for colorful, -w is the wordlist, --hc is to ignore status codes, command line needs FUZZ somewhere
+wfuzz -c -v -w /usr/share/wordlists/rockyou.txt --hc 404,402 http://<url>/FUZZ
+```
   * gobuster
 ```
-./gobuster -u <url> -w <wordlist> -t 10
+./gobuster -u <url> -w <wordlist> -t 10 -x <ext_list>
 # With Subdomain list
 ./gobuster -m dns -w <subdomain_file> -u <url> -i
 ```
