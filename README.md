@@ -66,6 +66,14 @@ smbclient -L <ip_addr>
 smbmap -H <ip_addr>
 ```
 * Directory Traversal
+  * Try different page numbers
+    * 404 means page doesn't exists
+    * 403 means forbidden and don't have access
+    * Try entering different page types
+  * Check id enumeration in the web page, if actual id then maybe you can get access to pages you're not suppose to
+  * If internal, use x-forwarded-for in burp suite to make it look like an internal request
+  * dirbuster with GUI
+  * enumerate directories with "nmap --script http-enum.nse <ip_addr>"
   * dirb
 ```
 # -X is the extension list, -N ignore status codes
@@ -121,9 +129,14 @@ searchsploit <software and version to search for>
   * Hydra
 ```
 hydra -l <user_name> -P /usr/share/wordlists/rockyou.txt <ip_addr> <protocol, ie ftp, ssh> -e nsr
+hydra -l <user_name> -P /usr/share/wordlists/rockyou.txt <ip_addr> http-post-form "<url path>:<parameters, eg. username=^USER^&password=^PASS^>:<error message on failed login page>
 ```
 ## Exploitation
 * Reverse Shells
+  * In kali, there's /usr/share/webshells/ directory with reverse shell files
+    * Change ip and port in the reverse shell filed
+    * On local machine, use netcat to liten to part
+    * Upload the reverse shell on the remote machine and it will open a reverse shell
   * http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
   * Create netcat listener on host machine
 ```
@@ -161,6 +174,9 @@ wpscan --url <url to page> -U <user_name> -P /usr/share/wordlists/rockyou.txt
 ```
 * Metasploit
   * Use this cheatsheet https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Metasploit%20-%20Cheatsheet.md
+* PHP
+  * Look for php include errors by entering "?page=../" in the url and see if undefined
+  * Also try inserting <?php phpinfo()?> in form
 ## Privilege Escalation
 * Windows
   * Useful site for living off the land https://lolbas-project.github.io/
@@ -247,5 +263,9 @@ bettercap>> ble.enum <MAC>
 # There should be some write attributes and we can write to it
 bettercap>> ble.write <MAC> <attr_id> <value>
 ```
+## XSS Injection
+* If you can enter text i form, try "<img src=x onerror=alert(1)"
+* Enter text in header and/or body
+  * Especially good if posted to forum or list so others can see the XSS injection
 ## Resources
 * Tips tools and guides in https://github.com/swisskyrepo/PayloadsAllTheThings
