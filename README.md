@@ -267,5 +267,9 @@ bettercap>> ble.write <MAC> <attr_id> <value>
 * If you can enter text i form, try "<img src=x onerror=alert(1)"
 * Enter text in header and/or body
   * Especially good if posted to forum or list so others can see the XSS injection
+* In the code, look for escape characters like below that sanitize for XSS but if an input does not have that, it may be vulnerable
+ ```
+ <p>${message.body.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+ ```
 ## Resources
 * Tips tools and guides in https://github.com/swisskyrepo/PayloadsAllTheThings
