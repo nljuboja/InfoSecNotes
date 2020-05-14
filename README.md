@@ -152,6 +152,7 @@ python -m SimpleHTTPServer
 ```
 * SQL Injection
   * Add "'" to input to see if any SQL errors occur
+    * Try "';" and see if any SQL errors occur
   * Try adding SQL input to url parameters if you think accessing the database
   * Try adding SQLi in Location or other Headers if possibly accessing db
   * sqlmap
