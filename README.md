@@ -278,5 +278,13 @@ bettercap>> ble.write <MAC> <attr_id> <value>
  ```
  <p>${message.body.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
  ```
+## Android Mobile
+* apktool will get the resources out of an apk
+* jadx - decompiles apk to java source
+* To use vim to browse java, "ctags -R; find . -name *.java > cscope.files; cscope -b;"
+* Native java files will be in library in resources lib probably
+* Can be dynamically and statically linked
+  * Use ghidra to analyze native library
+  * JENV object is always the first argument in native c functions, jenv.h can be loaded into ghidra for the struct definitions
 ## Resources
 * Tips tools and guides in https://github.com/swisskyrepo/PayloadsAllTheThings
