@@ -278,6 +278,11 @@ bettercap>> ble.write <MAC> <attr_id> <value>
  ```
  <p>${message.body.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
  ```
+## Graphql
+* Reference this site for tips https://medium.com/@the.bilal.rizwan/graphql-common-vulnerabilities-how-to-exploit-them-464f9fdce696
+* Use the full schema payload IntrospectionQuery to get the full schema of the graphql
+* Use the url to view the query and query types in the graphql
+* Use the dekstop graphql playground app to see the docs and schema easily and write query and mutations
 ## Android Mobile
 * apktool will get the resources out of an apk
 * jadx - decompiles apk to java source
