@@ -291,5 +291,22 @@ bettercap>> ble.write <MAC> <attr_id> <value>
 * Can be dynamically and statically linked
   * Use ghidra to analyze native library
   * JENV object is always the first argument in native c functions, jenv.h can be loaded into ghidra for the struct definitions
+* Use https://book.hacktricks.xyz/mobile-apps-pentesting/android-app-pentesting/frida-tutorial and https://frida.re/docs/android/
+* frida
+ * You can use frida to bypass certain parts of the code like SSL Pinning
+ * Use the commands below to start frida
+```
+# Copy frida server to data local tmp, set the permissions and run
+adb shell /data/local/tmp/frida-server
+# Javascript can look slike this
+Java.perform(function() {
+  var Object = Java.use("Java.object.class")
+  Object.functionName.implementation = function(arg1, arg2) {
+   <do stuff>
+  };
+});
+# To start app with script
+frida -U --no-pause -l script.js -f app_name
+```
 ## Resources
 * Tips tools and guides in https://github.com/swisskyrepo/PayloadsAllTheThings
