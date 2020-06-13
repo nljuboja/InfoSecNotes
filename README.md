@@ -283,6 +283,7 @@ bettercap>> ble.write <MAC> <attr_id> <value>
 * Use the full schema payload IntrospectionQuery to get the full schema of the graphql
 * Use the url to view the query and query types in the graphql
 * Use the dekstop graphql playground app to see the docs and schema easily and write query and mutations
+* Helpful tips https://github.com/chentsulin/awesome-graphql#workshoppers
 ## Android Mobile
 * apktool will get the resources out of an apk
 * jadx - decompiles apk to java source
