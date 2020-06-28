@@ -26,6 +26,14 @@
     * Intent Sniffing
       * Look for "sendBroadcast" and another app registers to receive broadcasts
 ## Storage
+* Private File Storage
+  * App private sotrage is in /data/data/<app_name>
+  * The owner and group of the app is u0_a<app_num>
+    * If you can somehow change the world permissions on the directory, you can read the private storage
+* SD Card Storage
+  * If app has "WRITE_EXTERNAL_STORAGE" in manifest, it has permission to write to SD card
+  * If app has "READ_EXTERNAL_STORAGE" in manifest, it has permission to read to SD card
+    * Check if a non privileged user can read the app's contents in SD storage
 ## Services
 * Unprotected services
   * Look for "onStartCommand" and if the commands can be set
@@ -33,3 +41,5 @@
   * Look for "onBind" and if commands were set
 * Messenger Vulnerability
   * Look for "handleMessage" and how it's set
+## WebViews
+
