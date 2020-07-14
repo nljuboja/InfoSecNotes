@@ -67,6 +67,7 @@
   * Look for "addJavascriptInterface" method to WebView because that's a bridge between the application and the javascript
   * Look for loading clear text or having SSL bypass code
   * Look for custom app updates or custom app store used
+  * Make sure the WebView site uses HTTPS
 ## Native Code
 * Discovery
   * Look for "System.loadLibrary", "System.load" or "native" keyword; these should load native code
@@ -76,4 +77,9 @@
 * Research
   * Need to use IDA or Ghidra to analyze the native binary
   * You can also attach a debugger to the native code
+## Logic
+* Check password reset logic and OTP (One Time Password - usually SMS text sent with code) entered
+  * Check to make sure the OTP code isn't sent as part of the url request (otherwise, we can take it and use that for an accoun takeover)
+* Watch out for passing in files or websites as post parameters
+* Try adding empty strings as ID or string post params
 
