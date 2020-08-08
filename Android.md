@@ -28,6 +28,7 @@
 * Look for intent "BROWSABLE", this means the app or activity can be opened through the browser
 * Activities
   * Review entry points of the activity; "onCreate", "onReceive", "query, insert, update, delete" (for Content Provider), "onStartCommand, onBind" (for services)
+  * If an activity does not have 'exported="true"' but does have an intent-filter, it might not be exposed
 ## Storage
 * Private File Storage
   * App private sotrage is in /data/data/<app_name>
