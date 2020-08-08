@@ -29,6 +29,7 @@
 * Activities
   * Review entry points of the activity; "onCreate", "onReceive", "query, insert, update, delete" (for Content Provider), "onStartCommand, onBind" (for services)
   * If an activity does not have 'exported="true"' but does have an intent-filter, it might not be exposed
+    * Still have to review the code because there might be crashes if the intent-filter is not implemented properly
 ## Storage
 * Private File Storage
   * App private sotrage is in /data/data/<app_name>
