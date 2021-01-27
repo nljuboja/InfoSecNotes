@@ -1,6 +1,6 @@
 sudo apt update
 
-sudo apt install vim exuberant-ctags cscope tmux radare2 radare2-cutter net-tools git python cmake build-essential
+sudo apt install vim exuberant-ctags cscope tmux radare2 radare2-cutter net-tools git python cmake build-essential gitk
 
 r2pm init
 r2pm update
