@@ -9,6 +9,9 @@ cd radare2 ; sys/install.sh
 
 cd ..
 wget https://github.com/radareorg/r2cutter/releases/download/v1.12.0/Cutter-v1.12.0-x64.Linux.AppImage
+mv Cutter-v1.12.0-x64.Linux.AppImage r2cutter
+chmod a+x r2cutter
+sudo ln -s ~/bin/r2cutter /usr/local/bin/r2cutter
 
 r2pm init
 r2pm update
